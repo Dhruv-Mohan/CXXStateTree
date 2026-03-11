@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <set>
+#include <iostream>
 
 #include "../../include/CXXStateTree/StateTree.h"
 
@@ -33,7 +34,7 @@ namespace CXXStateTree
         }
         else
         {
-            throw std::runtime_error("Event '" + event + "' not handled in state '" + current_->name() + "'");
+            std::cerr << "Warning: Event '" << event << "' not handled in state '" << current_->name() << "'\n";
         }
     }
 

@@ -33,6 +33,7 @@ int main()
     std::cout << "Current state: " << machine.current_state().name() << std::endl;
     machine.send("Stop");
     std::cout << "Current state: " << machine.current_state().name() << std::endl;
-
+    machine.send("Stop"); // No transition, should remain in Idle
+    std::cout << "Current state: " << machine.current_state().name() << std::endl;
     return 0;
 }
