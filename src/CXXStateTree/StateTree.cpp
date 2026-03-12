@@ -208,6 +208,10 @@ namespace CXXStateTree
         StateTree tree;
         tree.states_ = std::move(states_);
         tree.current_ = tree.find_state(initial_state_);
+        if(tree.current_->on_entry_action_)
+                {
+                    tree.current_->on_entry_action_({});
+                }
         if (tree.current_ && tree.current_->initial_substate())
         {
             tree.current_ = tree.current_->find_substate(*tree.current_->initial_substate());
