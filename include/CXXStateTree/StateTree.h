@@ -24,6 +24,7 @@ namespace CXXStateTree
         };
 
         void send(const std::string &event, const std::any &context = {});
+        const State * state_change_handler(const State *target_state);
         const State &current_state() const;
         std::string export_dot() const;
 

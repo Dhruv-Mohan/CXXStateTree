@@ -49,7 +49,7 @@ if(ENABLE_TEST)
 endif()
 
 
-option(ENABLE_EXAMPLE "Enable Example" OFF)
+option(ENABLE_EXAMPLE "Enable Example" ON)
 
 if(ENABLE_EXAMPLE)
   add_executable(basic examples/basic.cpp)

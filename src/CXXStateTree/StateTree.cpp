@@ -21,7 +21,8 @@ namespace CXXStateTree
                 return;
             if (trans.action)
                 trans.action(context);
-            current_ = find_state(trans.target);
+            current_ = state_change_handler(find_state(trans.target));
+            //current_ = find_state(trans.target);
             if (current_ && current_->initial_substate())
             {
                 current_ = current_->find_substate(*current_->initial_substate());
@@ -37,6 +38,26 @@ namespace CXXStateTree
             std::cerr << "Warning: Event '" << event << "' not handled in state '" << current_->name() << "'\n";
         }
     }
+
+    
+    const State * StateTree::state_change_handler(const State *target_state)
+    {
+        if(target_state == current_)
+        {
+            return current_;
+        }
+        if(current_ && current_->on_exit_action_)
+        {
+            current_->on_exit_action_({});
+        }
+        if(target_state && target_state->on_entry_action_)
+        {
+            target_state->on_entry_action_({});
+        }
+        return target_state;
+
+    }
+    
 
     const State &StateTree::current_state() const
     {

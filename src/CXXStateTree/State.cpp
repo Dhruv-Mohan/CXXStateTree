@@ -12,6 +12,20 @@ namespace CXXStateTree
         return *this;
     }
 
+    State &State::on_exit(Action action)
+    {
+        // TODO: insert return statement here
+        on_exit_action_ = std::move(action);
+        return *this;
+    }
+
+            State &State::on_entry(Action action)
+    {
+        // TODO: insert return statement here
+        on_entry_action_ = std::move(action);
+        return *this;
+    }
+
     State &State::initial_substate(const std::string &name)
     {
         initial_substate_ = name;

@@ -14,6 +14,8 @@ namespace CXXStateTree
 
         State &on(const std::string &event, const std::string &target,
                   IGuard *guard = nullptr, Action action = nullptr);
+        State &on_exit(Action action = nullptr);
+        State &on_entry(Action action = nullptr);
         State &initial_substate(const std::string &name);
         State &substate(const std::string &name, std::function<void(State &)> config);
         const std::string &name() const;
@@ -26,6 +28,9 @@ namespace CXXStateTree
         const State *find_substate(const std::string &name) const;
         void collect_transitions(std::vector<std::tuple<std::string, std::string, std::string, bool>> &all_transitions, const std::string &full_name, const std::string &base_name) const;
         void collect_states(std::ostream &os, const std::string &prefix = "") const;
+        
+        Action on_entry_action_ = nullptr;
+        Action on_exit_action_ = nullptr;
 
     private:
         std::string name_;
@@ -33,6 +38,7 @@ namespace CXXStateTree
         std::list<State> substates_;
         std::unordered_map<std::string, Transition> transitions_;
         std::optional<std::string> initial_substate_;
+
     };
 } // namespace CXXStateTree
 #endif // CXXSTATETREE_STATE_H
