@@ -27,12 +27,13 @@ namespace CXXStateTree
         const State * state_change_handler(const State *target_state);
         const State &current_state() const;
         std::string export_dot() const;
-
+        const State *find_state(const std::string &name) const;
+        const std::list<State> &get_states() const;
     private:
         std::list<State> states_;
         const State *current_ = nullptr;
 
-        const State *find_state(const std::string &name) const;
+        
         void sendToParent(const std::string &event, const std::any &context, const State *parent);
     };
 

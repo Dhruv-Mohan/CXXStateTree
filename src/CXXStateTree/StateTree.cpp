@@ -161,6 +161,10 @@ namespace CXXStateTree
         return nullptr;
     }
 
+    const std::list<State> &StateTree::get_states() const
+    {
+        return states_;
+    }
     void StateTree::sendToParent(const std::string &event, const std::any &context, const State *parent)
     {
         if (!parent)
